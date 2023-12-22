@@ -1,0 +1,1 @@
+This project aims to demonstrate the use of Puppet, a popular open-source configuration management tool, to automate the provisioning and management of IT infrastructure. The goal is to ensure that all systems maintain their intended state, with a focus on simplicity and repeatability.
