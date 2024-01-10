@@ -26,3 +26,6 @@ echo "
         bind :32700
         stats enable
         stats uri /" | sudo tee /etc/haproxy/haproxy.cfg
+        
+sudo haproxy -f /etc/haproxy/haproxy.cfg -c
+sudo service haproxy restart
