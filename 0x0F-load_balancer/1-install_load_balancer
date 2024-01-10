@@ -8,28 +8,28 @@ sudo apt-get install -y haproxy=2.9.\*
 echo "ENABLED=1" | sudo tee /etc/default/haproxy
 
 echo "
-    defaults
-        timeout connect 10s
-        timeout client 30s
-        timeout server 30s
-        log global
-        mode http
+defaults
+    timeout connect 10s
+    timeout client 30s
+    timeout server 30s
+    log global
+    mode http
 
-    frontend haproxynode
-        bind *:80
-        mode http
-        default_backend backendnodes
+frontend haproxynode
+    bind *:80
+    mode http
+    default_backend backendnodes
 
-    backend backendnodes
-        balance roundrobin
-        option forwardfor
-        server 436246-web-01 35.153.51.114:80 check
-        server 436246-web-02 54.174.124.29:80 check
+backend backendnodes
+    balance roundrobin
+    option forwardfor
+    server 436246-web-01 35.153.51.114:80 check
+    server 436246-web-02 54.174.124.29:80 check
 
-    listen stats
-        bind :32700
-        stats enable
-        stats uri /" | sudo tee /etc/haproxy/haproxy.cfg
+listen stats
+    bind :32700
+    stats enable
+    stats uri /" | sudo tee /etc/haproxy/haproxy.cfg
 
 sudo haproxy -f /etc/haproxy/haproxy.cfg -c
 sudo service haproxy restart
