@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # A script to restart apache2 so that the curling port returns a page that contains 'Hello Holberton'
-sudo /etc/init.d/apache2 restart 
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
