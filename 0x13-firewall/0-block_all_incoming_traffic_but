@@ -2,6 +2,8 @@
 # Block all incoming traffic except 22, 443, 80 tcp ports
 sudo apt update
 sudo apt install ufw
+sudo ufw disable
+sudo ufw reset
 sudo ufw deny incoming
 sudo ufw allow 22
 sudo ufw allow 443
