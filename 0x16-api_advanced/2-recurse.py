@@ -6,7 +6,6 @@
 """
 
 import requests
-import sys
 
 
 def recurse(subreddit, hot_list=[], after=""):
@@ -22,6 +21,8 @@ def recurse(subreddit, hot_list=[], after=""):
     data = resp.json()
 
     if resp.status_code == 200:
+        if "error" in data:
+            return None
         children = data['data']['children']
         for child in children:
             hot_list.append(child['data']['title'])
@@ -30,5 +31,3 @@ def recurse(subreddit, hot_list=[], after=""):
             return recurse(subreddit, hot_list, after)
         else:
             return hot_list
-    return None
-    
