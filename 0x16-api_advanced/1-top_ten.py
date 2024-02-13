@@ -3,7 +3,7 @@
     1-top_ten.py
 """
 import requests
-import sys
+
 
 def top_ten(subreddit):
     """
