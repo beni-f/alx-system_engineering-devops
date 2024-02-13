@@ -6,29 +6,29 @@
 """
 
 import requests
+import sys
 
 
 def recurse(subreddit, hot_list=[], after=""):
     """Querying Reddit API, and returns all
     hot articles for a given subreddit."""
 
-    url = "https://api.reddit.com/r/{}/hot".format(subreddit)
-    headers = {'User-Agent': 'Beni Fissha'}
-    arg = {"after": after}
-    resp = requests.get(url, params=arg, headers=headers)
-    list_a = resp.json().get('data', {}).get('children', None)
-    pagination = resp.json().get('data', {}).get('after', None)
+    url = "https://api.reddit.com/r/{}/hot.json".format(subreddit)
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+    if after:
+        url += "?after={}".format(after)
 
-    if pagination is not None:
+    resp = requests.get(url, headers=headers)
+    data = resp.json()
 
-        if list_a:
-            for item in list_a:
-                hot_list.append(item.get("data").get("title"))
-
-        if pagination is not None:
-            recurse(subreddit, hot_list, pagination)
-
-        return hot_list
-
-    else:
-        return None
+    if resp.status_code == 200:
+        children = data['data']['children']
+        for child in children:
+            hot_list.append(child['data']['title'])
+        after = data['data']['after']
+        if after is not None:
+            return recurse(subreddit, hot_list, after)
+        else:
+            return hot_list
+    return None
+    
