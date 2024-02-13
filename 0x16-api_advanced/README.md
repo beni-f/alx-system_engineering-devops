@@ -1,0 +1,1 @@
+This project focuses on working on greater and more advanced api like the Reddit API.
