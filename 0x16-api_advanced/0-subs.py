@@ -3,6 +3,8 @@
     0-subs.py
 """
 import requests
+
+
 def number_of_subscribers(subreddit):
     """
         Return the number of subscribers for a given subreddit
@@ -15,4 +17,3 @@ def number_of_subscribers(subreddit):
         subs = data.get('data').get('subscribers')
         return subs
     return 0
-
