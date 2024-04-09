@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import requests
 """
 0-subs.py
