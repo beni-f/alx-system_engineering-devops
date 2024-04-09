@@ -2,9 +2,11 @@ import requests
 """
 0-subs.py
 """
+
+
 def number_of_subscribers(subreddit):
     """
-        A function that queries the Reddit API and returns the number of subscribers for a given reddit
+       Returns the number of subscribers for a given reddit
     """
     url = f'https://api.reddit.com/r/{subreddit}/about'
     headers = {'User-Agent': 'MyBot/0.1'}
